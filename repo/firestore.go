@@ -3,6 +3,7 @@ package repo
 import (
 	"context"
 	"log"
+	"os"
 
 	"cloud.google.com/go/firestore"
 	"github.com/Nithinparam/CleanArchitecture/entity"
@@ -12,6 +13,7 @@ import (
 type repo struct{}
 
 func NewFirestoreRepo() PostRepo {
+	os.Setenv("GOOGLE_APPLICATION_CREDENTIALS", "./quickstart-1611068463766-firebase-adminsdk-114sr-3fc0c71eb8.json")
 	return &repo{}
 }
 
