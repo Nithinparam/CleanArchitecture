@@ -17,8 +17,13 @@ type PostController interface {
 	GetPosts(w http.ResponseWriter, r *http.Request)
 	AddPosts(w http.ResponseWriter, r *http.Request)
 }
+type controller struct{}
 
-func GetPosts(w http.ResponseWriter, r *http.Request) {
+func NewPostController() PostController {
+	return &controller{}
+}
+
+func (*controller) GetPosts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application:json")
 	posts, err := serve.FindAll()
 	if err != nil {
@@ -29,7 +34,7 @@ func GetPosts(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(posts)
 }
 
-func AddPosts(w http.ResponseWriter, r *http.Request) {
+func (*controller) AddPosts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application:json")
 	var post entity.Post = entity.Post{Title: "Title 233", Text: "Text 3332"}
 	err1 := serve.Validate(&post)
