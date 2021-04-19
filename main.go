@@ -6,12 +6,16 @@ import (
 	"os"
 
 	"github.com/Nithinparam/CleanArchitecture/controller"
+	"github.com/Nithinparam/CleanArchitecture/repo"
 	"github.com/Nithinparam/CleanArchitecture/router"
+	"github.com/Nithinparam/CleanArchitecture/service"
 )
 
 var (
-	postController controller.PostController = controller.NewPostController()
-	httpRouter     router.Router             = router.NewMuxRouter()
+	repos          repo.PostRepo             = repo.NewFirestoreRepo()
+	serve          service.PostService       = service.NewPostService(repos)
+	postController controller.PostController = controller.NewPostController(serve)
+	httpRouter     router.Router             = router.NewChiRouter()
 )
 
 func main() {

@@ -17,10 +17,11 @@ type PostService interface {
 type service struct{}
 
 var (
-	repos repo.PostRepo = repo.NewFirestoreRepo()
+	repos repo.PostRepo
 )
 
-func NewPostService() PostService {
+func NewPostService(repo repo.PostRepo) PostService {
+	repos = repo
 	return &service{}
 }
 

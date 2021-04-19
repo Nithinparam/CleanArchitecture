@@ -3,6 +3,8 @@ package router
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/go-chi/chi"
 )
 
 type chiRouter struct{}
