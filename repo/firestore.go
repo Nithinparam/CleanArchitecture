@@ -11,7 +11,7 @@ import (
 
 type repo struct{}
 
-func NewPostRepo() PostRepo {
+func NewFirestoreRepo() PostRepo {
 	return &repo{}
 }
 
