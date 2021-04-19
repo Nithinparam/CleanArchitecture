@@ -9,6 +9,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
+var (
+	httpRouter router.Router = router.NewMuxRouter()
+)
+
 func main() {
 	os.Setenv("GOOGLE_APPLICATION_CREDENTIALS", "./quickstart-1611068463766-firebase-adminsdk-114sr-3fc0c71eb8.json")
 	router := mux.NewRouter()
